@@ -213,12 +213,111 @@ const Navigation = ({ activePage, setActivePage, mobileOpen, setMobileOpen }) =>
             className="flex items-center gap-3 group"
           >
   }`}>
+       const Navigation = ({ activePage, setActivePage, mobileOpen, setMobileOpen }) => {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const navItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'immigration', label: 'Immigration' },
+    { id: 'study', label: 'Study Abroad' },
+    { id: 'business', label: 'Business' },
+    { id: 'tourist', label: 'Tourist Visas' },
+    { id: 'countries', label: 'Countries' },
+    { id: 'stories', label: 'Success' },
+    { id: 'blog', label: 'Blog' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
+  return (
+    <>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? 'bg-navy-deep shadow-2xl py-3' : 'bg-transparent py-5'
+      }`}>
         <div className="max-w-7xl mx-auto px-5 flex items-center justify-between">
           {/* Logo */}
           <button
             onClick={() => { setActivePage('home'); window.scrollTo({ top: 0 }); }}
             className="flex items-center gap-3 group"
           >
+            <img
+              src={logoImg}
+              alt="Accurate Consultancy"
+              className="h-16 w-auto"
+            />
+          </button>
+
+          {/* Desktop nav */}
+          <div className="hidden lg:flex items-center gap-1">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => { setActivePage(item.id); window.scrollTo({ top: 0 }); }}
+                className={`px-3 py-2 text-sm tracking-wide transition-colors relative ${
+                  activePage === item.id ? 'text-gold' : 'text-white/80 hover:text-gold'
+                }`}
+              >
+                {item.label}
+                {activePage === item.id && (
+                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-gold" />
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* CTA + mobile toggle */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => { setActivePage('contact'); window.scrollTo({ top: 0 }); }}
+              className="hidden md:inline-flex btn-gold px-5 py-2.5 rounded-full text-sm items-center gap-2"
+            >
+              Book Consultation <ArrowRight size={14} />
+            </button>
+            <button
+              className="lg:hidden text-white p-2"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="menu"
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile drawer */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-40 bg-navy-deepest/98 lg:hidden pt-24 px-6 animate-fade-in">
+          <div className="flex flex-col gap-1">
+            {navItems.map((item, i) => (
+              <button
+                key={item.id}
+                onClick={() => { setActivePage(item.id); setMobileOpen(false); window.scrollTo({ top: 0 }); }}
+                className={`text-left py-4 border-b border-gold-soft text-lg font-display tracking-wide transition-colors animate-fade-up ${
+                  activePage === item.id ? 'text-gold' : 'text-white/90'
+                }`}
+                style={{ animationDelay: `${i * 0.05}s` }}
+              >
+                {item.label}
+                <ArrowRight size={16} className="inline ml-2 opacity-50" />
+              </button>
+            ))}
+            <button
+              onClick={() => { setActivePage('contact'); setMobileOpen(false); window.scrollTo({ top: 0 }); }}
+              className="btn-gold py-4 mt-6 rounded-full text-center font-semibold"
+            >
+              Book Consultation
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
            <img
   src="/logo.png"
   alt="Accurate Consultancy"
