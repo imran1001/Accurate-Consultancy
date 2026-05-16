@@ -212,11 +212,29 @@ const Navigation = ({ activePage, setActivePage, mobileOpen, setMobileOpen }) =>
             onClick={() => { setActivePage('home'); window.scrollTo({ top: 0 }); }}
             className="flex items-center gap-3 group"
           >
+  }`}>
+        <div className="max-w-7xl mx-auto px-5 flex items-center justify-between">
+          {/* Logo */}
+          <button
+            onClick={() => { setActivePage('home'); window.scrollTo({ top: 0 }); }}
+            className="flex items-center gap-3 group"
+          >
            <img
   src="/logo.png"
   alt="Accurate Consultancy"
   className="h-16 w-auto"
 />
+          </button>
+
+          {/* Desktop nav */}
+          <div className="hidden lg:flex items-center gap-1">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => { setActivePage(item.id); window.scrollTo({ top: 0 }); }}
+                className={`px-3 py-2 text-sm tracking-wide transition-colors relative ${
+                  activePage === item.id ? 'text-gold' : 'text-white/80 hover:text-gold'
+                }`}
           </button>
 
           {/* Desktop nav */}
