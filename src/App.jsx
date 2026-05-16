@@ -8,7 +8,7 @@ import {
   Quote, Search, BookOpen, Clock, Anchor, Crown
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImg from './logo.png'; // Handled safely via Vite bundling
+import logoImg from './logo.png'; // Handled via bundler configuration
 
 /* ============================================================
    ACCURATE CONSULTANCY — Premium Immigration Website
@@ -573,7 +573,7 @@ const StudyAbroadStrip = ({ setActivePage }) => {
                 <span className="font-display text-gold text-2xl font-bold">{d.count}</span>
               </div>
               <h3 className="font-display text-white text-lg mb-1">{d.country}</h3>
-              <p className="text-white/60 text-xs">{d.label}</p>
+              <p className="text-white/66 text-xs">{d.label}</p>
             </div>
           ))}
         </div>
