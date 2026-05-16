@@ -212,16 +212,11 @@ const Navigation = ({ activePage, setActivePage, mobileOpen, setMobileOpen }) =>
             onClick={() => { setActivePage('home'); window.scrollTo({ top: 0 }); }}
             className="flex items-center gap-3 group"
           >
-            <div className="relative">
-              <div className="w-12 h-12 rounded-full gradient-gold flex items-center justify-center shadow-lg">
-                <span className="font-display text-navy-deep text-xl font-black">A</span>
-              </div>
-              <div className="absolute -inset-1 rounded-full border border-gold opacity-50 animate-spin-slow" />
-            </div>
-            <div className="hidden sm:block text-left">
-              <div className="font-display text-white text-lg leading-tight tracking-wide">Accurate</div>
-              <div className="text-gold text-[10px] tracking-[0.25em] font-medium uppercase">Consultancy</div>
-            </div>
+           <img
+  src="/logo.png"
+  alt="Accurate Consultancy"
+  className="h-16 w-auto"
+/>
           </button>
 
           {/* Desktop nav */}
