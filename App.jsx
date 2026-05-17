@@ -210,18 +210,13 @@ const Navigation = ({ activePage, setActivePage, mobileOpen, setMobileOpen }) =>
           {/* Logo */}
           <button
             onClick={() => { setActivePage('home'); window.scrollTo({ top: 0 }); }}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2 group"
           >
-            <div className="relative">
-              <div className="w-12 h-12 rounded-full gradient-gold flex items-center justify-center shadow-lg">
-                <span className="font-display text-navy-deep text-xl font-black">A</span>
-              </div>
-              <div className="absolute -inset-1 rounded-full border border-gold opacity-50 animate-spin-slow" />
-            </div>
-            <div className="hidden sm:block text-left">
-              <div className="font-display text-white text-lg leading-tight tracking-wide">Accurate</div>
-              <div className="text-gold text-[10px] tracking-[0.25em] font-medium uppercase">Consultancy</div>
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="Accurate Consultancy" 
+              className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </button>
 
           {/* Desktop nav */}
@@ -1128,14 +1123,12 @@ const Footer = ({ setActivePage }) => (
       <div className="grid lg:grid-cols-12 gap-10 mb-12">
         {/* Brand */}
         <div className="lg:col-span-4">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-full gradient-gold flex items-center justify-center">
-              <span className="font-display text-navy-deep text-xl font-black">A</span>
-            </div>
-            <div>
-              <div className="font-display text-white text-lg leading-tight">Accurate</div>
-              <div className="text-gold text-[10px] tracking-[0.25em] uppercase">Consultancy</div>
-            </div>
+          <div className="mb-6">
+            <img 
+              src="/logo.png" 
+              alt="Accurate Consultancy" 
+              className="h-16 w-auto object-contain"
+            />
           </div>
           <p className="text-white/60 leading-relaxed mb-6 max-w-sm">
             A premium global mobility consultancy — turning visa goals into approved realities through bespoke advisory for discerning clients across the world.
